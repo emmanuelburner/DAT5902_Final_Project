@@ -1,0 +1,39 @@
+version: 2.1
+
+jobs:
+  setup_and_test:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install numpy pandas matplotlib
+      - run:
+          name: Run script to generate graphs
+          command: |
+            . venv/bin/activate
+            python main.py
+      - run:
+          name: Check if images are generated
+          command: |
+            if [ "$(ls -A images)" ]; then
+              echo "Images generated successfully.";
+            else
+              echo "No images found. Ensure the script is working properly."; exit 1;
+            fi
+      - run:
+          name: Run unit tests
+          command: |
+            . venv/bin/activate
+            python -m unittest discover -s tests
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - setup_and_test
