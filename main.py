@@ -36,7 +36,7 @@ fig.savefig('images/game_length_distribution.png')
 plt.close(fig)
 
 # Plot 2: Red vs Blue Wins Per Region
-region_wins = df.groupby('League').agg(
+region_wins = df.groupby('League', observed=False).agg(
     red_wins=('rResult', 'sum'),
     blue_wins=('bResult', 'sum')
 ).reset_index()
@@ -89,7 +89,7 @@ plt.close(fig)
 
 # Plot 4: Win Rate Based on Gold Difference Thresholds
 # Extract the final gold difference (last value in the 'golddiff' list)
-df['golddiff'] = df['golddiff'].apply(lambda x: eval(x)[-1] if isinstance(eval(x), list) else np.nan)
+df['golddiff'] = df['golddiff'].apply(lambda x: ast.literal_eval(x)[-1] if isinstance(ast.literal_eval(x), list) else np.nan)
 
 # Drop rows with NaN values in 'golddiff' column
 df.dropna(subset=['golddiff'], inplace=True)
