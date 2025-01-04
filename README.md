@@ -34,13 +34,16 @@ The dataset (`data/LeagueofLegends.csv`) includes match statistics with columns 
 The script generates the following graphs:
 
 1. **Game Length Distribution**:
-   - Boxplot and Empirical CDF (ECDF) of game lengths.
-   
+   - Boxplot of game lengths.
+   - Empirical CDF (ECDF) of game lengths
+
 2. **Win Comparison by Region**:
-   - Bar charts comparing the number of wins for blue and red teams across regions, with an additional chart showing the absolute difference in wins.
+   - Bar chart of total Blue side wins
+   - Bar chart of total Red side wins
+   - Bar chart of difference between Blue and Red side wins
 
 3. **Red vs Blue by Game Length**:
-   - A horizontal bar chart showing the number of red and blue wins grouped by game length.
+   - A horizontal bar chart (resembling a population pyramid) showing the number of red and blue wins grouped by game length.
 
 4. **Win Rate vs Gold Difference**:
    - A line plot comparing the win rates for blue and red teams across different gold difference bins.
@@ -49,7 +52,9 @@ The script generates the following graphs:
    - A histogram showing the distribution of gold difference for games won by blue and red teams.
 
 6. **Gold Difference vs Game Length (Scatter Plot)**:
-   - Scatter plots showing the relationship between gold difference and game length, categorized by win type (unexpected and expected results).
+   - Scatter plot showing gold difference vs game length
+   - Scatter plot showing only points where team with less gold wins
+   - Scatter plot showing only points where team with more gold wins
 
 ## Unit Tests
 
