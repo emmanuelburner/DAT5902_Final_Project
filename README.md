@@ -55,7 +55,9 @@ The script generates the following graphs:
 
 The project includes unit tests in `test_main.py` to verify the following:
 
-- Dataset loads correctly and is not empty.
-- The `images/` folder exists and contains the expected graph files.
-- Gold difference processing is correct and free of missing values.
-- The dataset contains all required columns and has no duplicate entries.
+- **test_dataset_load**: Dataset loads correctly and is not empty.
+- **test_images_folder_exists**: Verifies that the 'images' folder exists.
+- **test_graphs_generated**: Ensures that the expected graph files are generated and present in the 'images' folder.
+- **test_gold_diff_processing**: Verifies that the 'golddiff' column is processed correctly, without NaN or invalid types.
+- **test_missing_columns**: Checks if the required columns ('gamelength', 'golddiff', 'bResult', 'rResult', 'League') are present in the dataset.
+- **test_no_duplicate_entries**: Ensures there are no duplicate entries based on key columns ('gamelength', 'golddiff', 'bResult', 'rResult').
