@@ -18,29 +18,6 @@ The project requires the following Python packages:
 - `pandas`
 - `matplotlib`
 
-These packages are installed during the CircleCI setup step using a virtual environment.
-
-## Setup and Testing with CircleCI
-
-### Configuration
-
-The project is configured to run automatically using CircleCI. The `.circleci/config.yml` file defines a job to:
-
-1. Set up a Python virtual environment.
-2. Install dependencies.
-3. Run the `main.py` script to generate graphs.
-4. Ensure that the `images/` folder contains the generated graphs.
-5. Run unit tests to check the integrity of the dataset and correctness of the script.
-
-### CircleCI Workflow
-
-The CircleCI configuration file specifies the `setup_and_test` job to execute in the workflow, which includes the following steps:
-1. Checkout the project files.
-2. Install Python dependencies (`numpy`, `pandas`, `matplotlib`).
-3. Run the main script (`main.py`) to generate graphs.
-4. Verify that the images are generated successfully.
-5. Run unit tests from `test_main.py`.
-
 ## Dataset
 
 The dataset (`data/LeagueofLegends.csv`) includes match statistics with columns such as:
@@ -80,14 +57,3 @@ The project includes unit tests in `test_main.py` to verify the following:
 - The `images/` folder exists and contains the expected graph files.
 - Gold difference processing is correct and free of missing values.
 - The dataset contains all required columns and has no duplicate entries.
-
-### Running Tests Locally
-
-To run the tests locally, you can set up the environment and run the tests as follows:
-
-1. Install dependencies:
-
-   ```bash
-   python -m venv venv
-   . venv/bin/activate
-   pip install -r requirements.txt
