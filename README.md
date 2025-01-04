@@ -51,7 +51,7 @@ The script generates the following graphs:
 5. **Gold Difference Histogram for Wins**:
    - A histogram showing the distribution of gold difference for games won by blue and red teams.
 
-6. **Gold Difference vs Game Length (Scatter Plot)**:
+6. **Gold Difference vs Game Length**:
    - Scatter plot showing gold difference vs game length
    - Scatter plot showing only points where team with less gold wins
    - Scatter plot showing only points where team with more gold wins
