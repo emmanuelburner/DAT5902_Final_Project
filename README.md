@@ -17,7 +17,8 @@ The project requires the following Python packages:
 - `numpy`
 - `pandas`
 - `matplotlib`
-
+- `os`
+- `unittest`
 ## Dataset
 
 The dataset (`data/LeagueofLegends.csv`) includes match statistics with columns such as:
