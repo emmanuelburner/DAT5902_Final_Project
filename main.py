@@ -86,3 +86,34 @@ ax.legend()
 plt.tight_layout()
 fig.savefig('images/red_vs_blue_by_length.png')
 plt.close(fig)
+
+# Plot 5: Win Rate Based on Gold Difference Thresholds
+# Extract the final gold difference (last value in the 'golddiff' list)
+df['golddiff'] = df['golddiff'].apply(lambda x: eval(x)[-1] if isinstance(eval(x), list) else np.nan)
+
+# Drop rows with NaN values in 'golddiff' column
+df.dropna(subset=['golddiff'], inplace=True)
+
+# Group the data by golddiff ranges and calculate win rates for each range
+golddiff_bins = np.arange(-5000, 5001, 500)  # Adjust the range of bins as needed
+df['golddiff_bin'] = pd.cut(df['golddiff'], bins=golddiff_bins)
+
+# Calculate win rate for each gold difference range
+win_rates = df.groupby('golddiff_bin').agg(
+    win_rate_blue=('bResult', 'mean'),  # Blue win rate
+    win_rate_red=('rResult', 'mean')    # Red win rate
+).reset_index()
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plot win rate vs gold difference bin for both blue and red
+ax.plot(golddiff_bins[:-1], win_rates['win_rate_blue'], color=BLUE_COLOR, marker='o', label='Blue Win Rate')
+ax.plot(golddiff_bins[:-1], win_rates['win_rate_red'], color=RED_COLOR, marker='o', label='Red Win Rate')
+
+ax.set_xlabel('Gold Difference Range')
+ax.set_ylabel('Win Rate')
+ax.set_title('Win Rate vs Gold Difference')
+ax.legend()
+plt.tight_layout()
+fig.savefig('images/win_rate_vs_gold_difference.png')
+plt.close(fig)
