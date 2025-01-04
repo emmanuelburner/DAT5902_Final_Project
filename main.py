@@ -87,7 +87,7 @@ plt.tight_layout()
 fig.savefig('images/red_vs_blue_by_length.png')
 plt.close(fig)
 
-# Plot 5: Win Rate Based on Gold Difference Thresholds
+# Plot 4: Win Rate Based on Gold Difference Thresholds
 # Extract the final gold difference (last value in the 'golddiff' list)
 df['golddiff'] = df['golddiff'].apply(lambda x: eval(x)[-1] if isinstance(eval(x), list) else np.nan)
 
@@ -116,4 +116,25 @@ ax.set_title('Win Rate vs Gold Difference')
 ax.legend()
 plt.tight_layout()
 fig.savefig('images/win_rate_vs_gold_difference.png')
+plt.close(fig)
+
+# Plot 5: Histogram of Gold Difference for Wins and Losses
+# Separate the data for wins and losses
+df_blue_wins = df[df['bResult'] == 1]  # Blue wins
+df_red_wins = df[df['rResult'] == 1]   # Red wins
+
+# Plotting histogram for gold difference in blue and red wins
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plot the histogram for blue wins and red wins
+ax.hist(df_blue_wins['golddiff'], bins=50, alpha=0.7, label='Blue Wins', color=BLUE_COLOR, edgecolor='black')
+ax.hist(df_red_wins['golddiff'], bins=50, alpha=0.7, label='Red Wins', color=RED_COLOR, edgecolor='black')
+
+ax.set_xlabel('Gold Difference')
+ax.set_ylabel('Frequency')
+ax.set_title('Histogram of Gold Difference for Wins')
+ax.legend()
+
+plt.tight_layout()
+fig.savefig('images/gold_difference_histogram.png')
 plt.close(fig)
