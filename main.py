@@ -196,3 +196,5 @@ cbar.set_label('Game Result (0=Red Win, 1=Blue Win)')
 plt.tight_layout()
 fig.savefig('images/scatter_gold_difference.png')
 plt.close(fig)
+
+print("hello world")
